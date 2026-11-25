@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>DriveEase | Car Rental Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" data-page="home"><span class="brand-mark">D</span><span>DriveEase<small>RENTAL MANAGEMENT</small></span></a>
+  <nav id="mainNav">
+    <button class="nav-link active" data-page="home">Explore cars</button>
+    <button class="nav-link hidden" data-page="myBookings" id="bookingsNav">My bookings</button>
+    <button class="nav-link hidden" data-page="profile" id="profileNav">My profile</button>
+    <button class="nav-link hidden" data-page="admin" id="adminNav">Admin console</button>
+  </nav>
+  <div class="header-actions" id="headerActions">
+    <button class="btn btn-ghost" id="loginBtn">Log in</button><button class="btn btn-primary" id="signupBtn">Create account</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">THE DRIVE EASE EXPERIENCE</p>
+    <h1>Arrive in style.<br><span>Go beyond ordinary.</span></h1>
+    <p class="hero-text">Exceptional comfort, carefully selected vehicles, and a seamless booking experience—wherever the road takes you.</p>
+    <div class="hero-actions"><button class="btn btn-primary btn-large" id="exploreBtn">Explore fleet <span>↗</span></button><div class="trust"><span class="trust-stars">★★★★★</span><span><b>Every journey, elevated</b><small>Discover · Choose · Drive</small></span></div></div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-label"><span class="pulse"></span> YOUR JOURNEY, YOUR WAY</div>
+    <img src="assets/cars/c23.jpg" alt="Premium sedan from the DriveEase vehicle fleet" fetchpriority="high">
+    <div class="hero-stat"><span class="stat-icon">✦</span><span><b>Premium, made simple</b><small>Transparent daily pricing</small></span></div>
+  </div>
+</section>
+
+<section class="trust-strip" id="trustStrip" aria-label="DriveEase highlights">
+  <div class="trust-item"><span class="trust-icon">✦</span><div><strong>Thoughtfully selected</strong><small>Cars for different kinds of journeys</small></div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">₹</span><div><strong>Clear daily pricing</strong><small>See your estimated total before booking</small></div></div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><span class="trust-icon">◷</span><div><strong>Manage at your pace</strong><small>Review your bookings and preferences</small></div></div>
+</section>
+
+<section class="search-wrap" aria-label="Find a rental car">
+  <div class="search-head"><div><p class="eyebrow">FIND YOUR RIDE</p><h2>Where are you headed?</h2></div><span class="search-hint">Choose your dates to check availability</span></div>
+  <div class="search-panel">
+    <div class="search-field"><label for="searchInput">Vehicle</label><input id="searchInput" type="search" placeholder="Search model or brand"></div>
+    <div class="search-field"><label for="categoryFilter">Vehicle type</label><select id="categoryFilter"><option value="All">All categories</option><option>Sedan</option><option>SUV</option><option>Hatchback</option><option>Luxury</option><option>Electric</option><option>MPV</option><option>Crossover</option></select></div>
+    <div class="search-field"><label for="pickupDate">Pickup date</label><input id="pickupDate" type="date"></div>
+    <div class="search-field"><label for="returnDate">Return date</label><input id="returnDate" type="date"></div>
+    <button class="btn btn-primary search-btn" id="searchBtn">Find a car <span>→</span></button>
+  </div>
+</section>
+
+<section class="section" id="fleetSection">
+  <div class="section-heading"><div><p class="eyebrow">THE DRIVE EASE FLEET</p><h2>Find your perfect match.</h2><p class="muted">Explore a growing fleet of city-friendly, family, electric and premium vehicles.</p></div><div class="heading-right fleet-controls">
+      <span class="result-count" id="resultCount">7 vehicles</span>
+      <label class="sort-control" for="sortCars">Sort <select id="sortCars"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name A–Z</option></select></label>
+      <button class="btn btn-ghost btn-small" id="favoritesOnly" aria-pressed="false">♡ Favorites</button>
+      <button class="text-button" id="clearFilters">Clear filters ↗</button>
+    </div></div>
+  <div class="category-rail" id="categoryRail" aria-label="Quick vehicle categories">
+    <button class="category-chip active" type="button" data-category="All">All vehicles <span>↗</span></button>
+    <button class="category-chip" type="button" data-category="SUV">SUVs</button>
+    <button class="category-chip" type="button" data-category="Sedan">Sedans</button>
+    <button class="category-chip" type="button" data-category="Hatchback">Hatchbacks</button>
+    <button class="category-chip" type="button" data-category="Luxury">Luxury</button>
+    <button class="category-chip" type="button" data-category="Electric">Electric</button>
+    <button class="category-chip" type="button" data-category="MPV">Family MPVs</button>
+  </div>
+  <div class="car-grid" id="carGrid"></div>
+  <div class="compare-tray hidden" id="compareTray" aria-live="polite"><div><strong id="compareCount">0 vehicles selected</strong><small>Select up to 3 vehicles to compare specifications and prices.</small></div><div class="compare-actions"><button class="btn btn-ghost btn-small" id="clearCompare">Clear</button><button class="btn btn-primary btn-small" id="compareNow" disabled>Compare vehicles</button></div></div>
+</section>
+
+<div id="homeExtras">
+  <section class="how-section" aria-labelledby="howTitle">
+    <div class="how-intro"><p class="eyebrow">A SIMPLE WAY TO GO</p><h2 id="howTitle">Your next journey,<br><span>without the extra steps.</span></h2><p>From choosing a car to reviewing your reservation, DriveEase keeps the essentials clear and close at hand.</p><button class="btn btn-primary" id="howExploreBtn" type="button">Find your car <span>↗</span></button></div>
+    <div class="how-steps">
+      <article class="how-step"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Find your fit</h3><p>Search by model, explore categories and compare specifications side by side.</p></article>
+      <article class="how-step"><span class="step-number">02</span><div class="step-icon">▦</div><h3>Choose your dates</h3><p>Review availability and see an estimated rental total before confirming.</p></article>
+      <article class="how-step"><span class="step-number">03</span><div class="step-icon">↗</div><h3>Stay in control</h3><p>Keep your reservations, favorites and account activity together in one place.</p></article>
+    </div>
+  </section>
+  <section class="value-section" aria-labelledby="valueTitle">
+    <div class="value-heading"><p class="eyebrow">THE DRIVE EASE DIFFERENCE</p><h2 id="valueTitle">The details make<br>the journey.</h2><p>Designed around the decisions that matter when choosing your next car.</p></div>
+    <div class="value-grid">
+      <article class="value-card"><span class="value-icon">⌘</span><h3>Compare with confidence</h3><p>Review seating, fuel type, transmission and daily rates together before deciding.</p><span class="value-index">01 / CHOOSE</span></article>
+      <article class="value-card"><span class="value-icon">◷</span><h3>Know the numbers</h3><p>See rental duration and estimated cost clearly, with no surprise arithmetic.</p><span class="value-index">02 / PLAN</span></article>
+      <article class="value-card"><span class="value-icon">♡</span><h3>Make it yours</h3><p>Save favorites and keep track of your booking activity in your profile.</p><span class="value-index">03 / PERSONALISE</span></article>
+    </div>
+  </section>
+  <section class="final-cta"><div><p class="eyebrow">THE ROAD IS YOURS</p><h2>Find the car that fits<br>your kind of day.</h2><p>Browse the fleet and start planning your next trip.</p></div><button class="btn btn-primary btn-large" id="finalExploreBtn" type="button">Explore all vehicles <span>↗</span></button><div class="cta-orbit" aria-hidden="true"><span>DRIVE<br>EASE</span></div></section>
+</div>
+
+<section class="section hidden" id="bookingsSection">
+  <div class="section-heading"><div><p class="eyebrow">RESERVATION CENTRE</p><h2>My bookings</h2><p class="muted">View booking status, trip dates, and rental totals.</p></div></div>
+  <div class="summary-strip" id="bookingSummary"></div><div id="bookingsList"></div>
+</section>
+
+<section class="section hidden" id="profileSection">
+  <div class="section-heading"><div><p class="eyebrow">CUSTOMER ACCOUNT</p><h2>My profile</h2><p class="muted">Your account details, preferences, and recent activity.</p></div><div class="admin-heading-actions"><button class="btn btn-ghost" id="editProfileBtn">Edit profile</button><button class="btn btn-ghost" id="exportDataBtn">Export my activity</button></div></div>
+  <div class="profile-layout">
+    <aside class="profile-card" id="profileCard"></aside>
+    <div class="profile-main">
+      <div class="stats-grid" id="profileStats"></div>
+      <div class="two-cards">
+        <div class="panel"><div class="panel-title"><div><p class="eyebrow">YOUR TASTE</p><h3>Most preferred vehicles</h3></div><span class="panel-icon">♡</span></div><div id="preferencesList"></div></div>
+        <div class="panel"><div class="panel-title"><div><p class="eyebrow">RECENT ACTIVITY</p><h3>Login & session history</h3></div><span class="panel-icon">◷</span></div><div id="userActivity"></div></div>
+      </div>
+      <div class="panel"><div class="panel-title"><div><p class="eyebrow">ACCOUNT SECURITY</p><h3>Session details</h3></div></div><div id="sessionDetails"></div><p class="notice">Activity timestamps are stored in this browser's Local Storage. This is a learning project, not secure production authentication.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section hidden" id="adminSection">
+  <div class="section-heading"><div><p class="eyebrow">OPERATIONS OVERVIEW</p><h2>Admin console</h2><p class="muted">Monitor the fleet, customer activity, reservations, and maintenance.</p></div><div class="admin-heading-actions"><button class="btn btn-ghost" id="exportBackupBtn">Export backup</button><button class="btn btn-ghost" id="importBackupBtn">Import backup</button><input class="hidden" type="file" id="backupFile" accept="application/json,.json"><button class="btn btn-primary" id="addCarBtn">＋ Add vehicle</button></div></div>
+  <div class="stats-grid" id="adminStats"></div>
+  <div class="admin-tabs"><button class="admin-tab active" data-admin-tab="fleet">Fleet inventory</button><button class="admin-tab" data-admin-tab="bookings">Reservations</button><button class="admin-tab" data-admin-tab="customers">Customers & activity</button></div>
+  <div class="panel admin-panel" id="adminFleetPanel"><div class="panel-title"><div><p class="eyebrow">VEHICLE REGISTER</p><h3>Fleet inventory</h3></div><span class="muted" id="fleetAdminCount"></span></div><div class="table-wrap"><table><thead><tr><th>Vehicle</th><th>Category</th><th>Rate / day</th><th>Status</th><th>Actions</th></tr></thead><tbody id="adminCars"></tbody></table></div></div>
+  <div class="panel admin-panel hidden" id="adminBookingsPanel"><div class="panel-title"><div><p class="eyebrow">RESERVATION REGISTER</p><h3>All bookings</h3></div></div><div class="table-wrap"><table><thead><tr><th>Booking</th><th>Customer</th><th>Dates</th><th>Total</th><th>Status / actions</th></tr></thead><tbody id="adminBookings"></tbody></table></div></div>
+  <div class="panel admin-panel hidden" id="adminCustomersPanel"><div class="panel-title"><div><p class="eyebrow">CUSTOMER REGISTER</p><h3>Customer accounts & latest activity</h3></div></div><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Registered</th><th>Last login</th><th>Preferred vehicle</th><th>Bookings</th></tr></thead><tbody id="adminCustomers"></tbody></table></div></div>
+  <p class="notice">Demo admin credentials: <b>admin@driveease.com</b> / <b>admin123</b></p>
+</section>
+</main>
+
+<footer><a class="brand footer-brand" href="#" data-page="home"><span class="brand-mark">D</span><span>DriveEase<small>RENTAL MANAGEMENT</small></span></a><span>Built with HTML · CSS · JavaScript + React recovery demo</span><span>SDC Project · Local Storage demo</span></footer>
+
+<div class="modal-backdrop hidden" id="authModal"><div class="modal">
+  <button class="close-modal" data-close="authModal">×</button><p class="eyebrow">WELCOME TO DRIVE EASE</p><h2 id="authTitle">Log in</h2><p class="muted" id="authSubtitle">Continue your journey.</p>
+  <form id="authForm">
+    <div class="form-field hidden" id="nameField"><label for="authName">Full name</label><input id="authName" autocomplete="name" placeholder="Your full name"></div>
+    <div class="form-field"><label for="authEmail">Email address</label><input id="authEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+    <div class="form-field"><label for="authPassword">Password</label><input id="authPassword" type="password" required minlength="4" autocomplete="current-password" placeholder="At least 4 characters"></div>
+    <p class="form-error" id="authError"></p><button class="btn btn-primary btn-full" type="submit" id="authSubmit">Log in</button>
+  </form>
+  <p class="forgot-link-row" id="forgotLinkRow"><button type="button" class="text-button" id="forgotPasswordLink">Forgot password?</button></p>
+  <p class="switch-auth" id="switchAuthText">New here? <button id="switchAuth">Create account</button></p><p class="demo-note">Admin demo: admin@driveease.com / admin123</p>
+</div></div>
+
+<div class="modal-backdrop hidden" id="bookingModal"><div class="modal">
+  <button class="close-modal" data-close="bookingModal">×</button><p class="eyebrow">RESERVE YOUR VEHICLE</p><h2 id="bookingCarTitle">Book a car</h2><p class="muted" id="bookingCarInfo"></p>
+  <form id="bookingForm"><input type="hidden" id="bookingCarId">
+    <div class="form-field"><label for="bookingPickup">Pickup date</label><input id="bookingPickup" type="date" required></div>
+    <div class="form-field"><label for="bookingReturn">Return date</label><input id="bookingReturn" type="date" required></div>
+    <div class="price-summary"><span id="priceDays">Choose dates to calculate</span><strong id="priceTotal">₹0</strong></div>
+    <p class="form-error" id="bookingError"></p><button class="btn btn-primary btn-full" type="submit">Confirm reservation</button>
+  </form><p class="demo-note">Payment is simulated for the academic demo. No card details are collected.</p>
+</div></div>
+
+<div class="modal-backdrop hidden" id="profileEditModal"><div class="modal">
+  <button class="close-modal" data-close="profileEditModal" aria-label="Close profile editor">×</button><p class="eyebrow">ACCOUNT SETTINGS</p><h2>Edit profile</h2><p class="muted">Update the display name used in your account.</p>
+  <form id="profileEditForm"><div class="form-field"><label for="profileEditName">Full name</label><input id="profileEditName" required minlength="2" maxlength="70" autocomplete="name"></div><div class="form-field"><label for="profileEditEmail">Email address</label><input id="profileEditEmail" type="email" readonly></div><p class="form-error" id="profileEditError"></p><button class="btn btn-primary btn-full" type="submit">Save profile</button></form>
+</div></div>
+<div class="modal-backdrop hidden" id="carModal"><div class="modal">
+  <button class="close-modal" data-close="carModal">×</button><p class="eyebrow">FLEET MANAGEMENT</p><h2 id="carModalTitle">Add vehicle</h2>
+  <form id="carForm"><input type="hidden" id="editCarId">
+    <div class="form-field"><label for="carName">Make & model</label><input id="carName" required placeholder="e.g. Hyundai Creta"></div>
+    <div class="form-row"><div class="form-field"><label for="carCategory">Category</label><select id="carCategory"><option>Sedan</option><option>SUV</option><option>Hatchback</option><option>Luxury</option><option>Electric</option><option>MPV</option><option>Crossover</option></select></div><div class="form-field"><label for="carPrice">Rate per day (₹)</label><input id="carPrice" type="number" min="1" required placeholder="2500"></div></div>
+    <div class="form-row"><div class="form-field"><label for="carSeats">Seats</label><input id="carSeats" type="number" min="2" max="12" value="5" required></div><div class="form-field"><label for="carTransmission">Transmission</label><select id="carTransmission"><option>Automatic</option><option>Manual</option></select></div></div>
+    <div class="form-field"><label for="carImage">Vehicle image URL (optional)</label><input id="carImage" type="url" placeholder="https://..."></div>
+    <p class="form-error" id="carError"></p><button class="btn btn-primary btn-full" type="submit">Save vehicle</button>
+  </form>
+</div></div>
+<div class="modal-backdrop hidden" id="compareModal"><div class="modal compare-modal">
+  <button class="close-modal" data-close="compareModal" aria-label="Close comparison">×</button><p class="eyebrow">SIDE-BY-SIDE REVIEW</p><h2>Compare vehicles</h2><p class="muted">Compare pricing, seating and key specifications before choosing your ride.</p><div class="compare-table-wrap" id="compareTable"></div>
+</div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body></html>
